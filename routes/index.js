@@ -8,6 +8,7 @@ const { products } = require("../config/products");
 
 router.get('/', (req, res) => res.render('index', { products }));
 
+let valor = {};
 router.post('/buy', (req, res) => {
   
   const productId = req.query.id;
@@ -43,10 +44,10 @@ router.post('/buy', (req, res) => {
         console.warn(err);
       }
       else{
-        pagamento.links.forEach(link) => {
+        pagamento.links.forEach((link) => {
           if(link.rel === 'aproval_url')
           return res.redirect(link.href);
-        })
+        });
       }
     })
     
@@ -54,7 +55,29 @@ router.post('/buy', (req, res) => {
 
 router.get('/success', (req, res) => {
   //quando cliente clicar em pagar
-  res.render('success');
+
+  const payerId = req.quert.payerId;
+  const paymentId = req.query.paymentId;
+  
+  const execute_payment_json = {
+    "payer_id": payerId,
+    "transactions": [{
+      "anount": valor
+    }]
+  }
+
+  paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
+    if(error){
+      console.warn(error.response);
+      throw error;
+    }else{
+      console.log("Pagamento concluido com sucesso");
+      console.log(JSON.stringify(payment));
+      res.render('success');
+    }
+  });
+
+  
 });
 
 router.get('/cancel', (req, res) => {

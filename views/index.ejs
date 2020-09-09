@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Início - Loja IT</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css" />
+
+</head>
+<body>
+    <div>
+        <header class="header flex flex-center">
+            <h1 class="titulo">LOJA TI</h1>
+        </header>
+        
+        <br><br>
+
+        <div class="flex horizontal">
+            <%for(var i=0;i<products.length; i++) {%>
+              
+                <div class="flex-1 flex vertical">
+                    <div class="flex flex-center">
+                        <img src="<%= products[i].img %>" class="img-produto" />
+                    </div>
+    
+                    <br />
+    
+                    <h2 class="titulo-produto text-center"><%= products[i].titulo %></h2>
+                    <p class="descricao-produto text-center"><%= products[i].descricao %></p>
+                    <br />
+                    <h2 class="preco-produto text-center">
+                        <span>Apenas R$ </span><%= products[i].preco %>
+                    </h2>
+
+                    
+                    <form class="flex flex-center" action="/buy?id=<%= products[i].id %>" class="flex flex-center" method="POST">
+                        <input class="btn-comprar text-center" type="submit" class="btn-cta" value="COMPRAR">
+                    </form>
+                </div>            
+
+            <% } %>
+        </div>
+        <br>
+        <br>
+    </div>
+    </body>
+</html>

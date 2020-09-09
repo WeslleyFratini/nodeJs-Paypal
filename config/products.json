@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "titulo": "Mouse",
+            "descrição": "Um mouse muito bom",
+            "img": "/imagens/product1.png",
+            "preco": 45
+        },
+        {
+            "id": 2,
+            "titulo": "MousePad",
+            "descrição": "Um mouse pad espetacular",
+            "img": "/imagens/product2.png",
+            "preco": 100
+        },
+        {
+            "id": 3,
+            "titulo": "Teclado",
+            "descrição": "Um teclado para dia a dia",
+            "img": "/imagens/product3.png",
+            "preco": 125
+        }
+    ]
+}
